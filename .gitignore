@@ -1,0 +1,10 @@
+#ignore vim
+**/*.swp
+
+#ignore npm
+node_modules/
+
+
+#ignore client side bower
+client/public/lib
+

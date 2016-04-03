@@ -1,0 +1,10 @@
+{
+  "name": "electroAS",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "1.5.3",
+    "angular-route": "1.5.3",
+    "pdfjs-dist": "^1.4.162",
+    "jquery": "^2.2.2"
+  }
+}

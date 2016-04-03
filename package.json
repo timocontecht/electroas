@@ -1,0 +1,8 @@
+{
+  "name": "electroAs",
+  "version": "0.0.1",
+  "dependencies": {},
+  "devDependencies": {
+    "karma": "~0.13.22"
+  }
+}
