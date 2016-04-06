@@ -40,7 +40,7 @@ var TextLayerBuilder = (function TextLayerBuilderClosure() {
      * @param {number} timeout (optional) if specified, the rendering waits
      *   for specified amount of ms.
      */
-    render: function TextLayerBuilder_render(timeout) {
+    render: function TextLayerBuilder_render(timeout, mousedownfunc, mouseupfunc) {
       if (!this.divContentDone || this.renderingDone) {
         return;
       }
@@ -60,11 +60,12 @@ var TextLayerBuilder = (function TextLayerBuilderClosure() {
         timeout: timeout
       });
 
-      for (i=0; i<this.textDivs.length; i++) {
-		var div = this.textDivs[i];
-		div.addEventListener('mousedown', startSelection);
-		div.addEventListener('mouseup', addComment);
-      }
+      // prepare elements for selection 
+//      for (i=0; i<this.textDivs.length; i++) {
+//		var div = this.textDivs[i];
+//		div.addEventListener('wusedown', mousedownfunc);
+//		div.addEventListener('mouseup', mouseupfunc);
+//      }
 
       this.textLayerRenderTask.promise.then(function () {
         this.textLayerDiv.appendChild(textLayerFrag);
@@ -326,12 +327,4 @@ DefaultTextLayerFactory.prototype = {
   }
 };
 
-var startSelection = function(e) {
-	console.log("start selection from");
-	console.log(e);
-};
 
-var addComment = function(e) {
-	console.log("here then commenting");
-	console.log(e);
-};

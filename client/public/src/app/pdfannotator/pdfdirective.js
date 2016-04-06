@@ -5,14 +5,18 @@ angular.module('eapdf', [])
 })
 
 .directive('pdfAnnotator', ['PDFJS',  function(PDFJS){
+
+	var test = 'Timo';
+
+
 	return {
 		restrict: 'E',
 		
 		compile: function(elem, attrs, transclude) {
 			'use strict';
 
-			
 			return function(scope, elem, attrs) {
+
 			 	// create the DOM elements	
 				var $pdfContainer = jQuery("<div></div>");
 				elem.append($pdfContainer);
@@ -21,9 +25,10 @@ angular.module('eapdf', [])
 				$pdfContainer.append($canvas);
 				$pdfContainer.append($textLayerDiv);
 
+				draw($pdfContainer, $canvas, $textLayerDiv, scope);
 				scope.$watch(function(newVal, oldVal, scope){
 					console.log($pdfContainer);
-					draw($pdfContainer, $canvas, $textLayerDiv);
+					//TODO: draw again if something changes	
 				}, true);
 			};		
 
@@ -31,7 +36,20 @@ angular.module('eapdf', [])
 	
 	};
 
-	function draw($pdfContainer, $canvas, $textLayerDiv) {
+
+	function draw($pdfContainer, $canvas, $textLayerDiv, scope) {
+		var selection = {}; 
+		// the mouse handlers for selection
+		var startSelection = function(e) {
+				scope.selection.start = e.srcElement.attributes.line.value;
+			};
+
+		var addComment = function(e) {
+				scope.selection.end =  e.srcElement.attributes.line.value;
+				console.log(scope);
+			};
+
+
 		PDFJS.getDocument('pdf/test.pdf').then(function(pdf) {
 			pdf.getPage(1).then(function(page){
 				var scale = 1.5;
@@ -68,13 +86,26 @@ angular.module('eapdf', [])
 					page.render(renderContext);
 				 
 					textLayer.setTextContent(textContent);
-					textLayer.render();
+					textLayer.render(10);
+					
+					// prepare elements for selection
+					for (var i=0; i<textLayer.textDivs.length; i++) {
+						var div = textLayer.textDivs[i];
+						var lin_attr = document.createAttribute("line");
+						lin_attr.value = i;
+						div.setAttributeNode(lin_attr);
+						div.addEventListener('mousedown', startSelection);
+						div.addEventListener('mouseup', addComment);
+					}
 
 				});
 			});		
 
 		});
 
-
+	
 	}
+	
+
+	
 }]);
