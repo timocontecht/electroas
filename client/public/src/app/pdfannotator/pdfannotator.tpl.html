@@ -1,6 +1,15 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-6">
+			<div style="width: 50%; margin: 0 auto">
+				<button type="button" class="btn btn-default" aria-label="Page Back" ng-Click="pageBack()">
+					  <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+				</button>
+				{{page}}
+				<button type="button" class="btn btn-default" aria-label="Page Forward" ng-Click="pageForward()">
+					  <span class="glyphicon glyphicon-menu-right" aria-hidden="true" ></span>
+				</button>
+			</div>
 			<pdf-annotator></pdf-annotator>
 		</div>
 		<div class="col-md-2">

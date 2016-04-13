@@ -17,18 +17,17 @@ angular.module('eapdf', [])
 
 			return function(scope, elem, attrs) {
 
-			 	// create the DOM elements	
-				var $pdfContainer = jQuery("<div></div>");
-				elem.append($pdfContainer);
-				var $canvas = jQuery("<canvas></canvas>");
-				var $textLayerDiv = jQuery("<div />");
-				$pdfContainer.append($canvas);
-				$pdfContainer.append($textLayerDiv);
+				PDFJS.getDocument('pdf/test.pdf').then(function(pdf){
+					scope.$watch('page', function(page) {
+							draw(pdf, elem, page, scope);
+					}, true);
 
-				draw($pdfContainer, $canvas, $textLayerDiv, scope);
-				scope.$watch(function(newVal, oldVal, scope){
-					//TODO: draw again if something changes	
-				}, true);
+					// draw the first page
+					scope.page = 1;
+					scope.numberOfPages = pdf.numPages; 
+					scope.$apply();
+					
+				});
 			};		
 
 		}
@@ -36,7 +35,7 @@ angular.module('eapdf', [])
 	};
 
 
-	function draw($pdfContainer, $canvas, $textLayerDiv, scope) {
+	function draw(pdf, elem, page, scope){
 		var selection = {}; 
 		// the mouse handlers for selection
 		var startSelection = function(e) {
@@ -55,8 +54,18 @@ angular.module('eapdf', [])
 			};
 
 
-		PDFJS.getDocument('pdf/test.pdf').then(function(pdf) {
-			pdf.getPage(1).then(function(page){
+			pdf.getPage(scope.page).then(function(page){
+				console.log(elem);
+				if (elem[0].childElementCount > 0)
+					elem[0].removeChild(elem[0].firstChild);
+				// create the DOM elements	
+				var $pdfContainer = jQuery("<div></div>");
+				elem.append($pdfContainer);
+				var $canvas = jQuery("<canvas></canvas>");
+				var $textLayerDiv = jQuery("<div />");
+				$pdfContainer.append($canvas);
+				$pdfContainer.append($textLayerDiv);
+				
 				var scale = 1.5;
 				var viewport = page.getViewport(scale);
 				
@@ -80,7 +89,13 @@ angular.module('eapdf', [])
 
 				page.getTextContent().then(function (textContent){
 					var factory = new DefaultTextLayerFactory();
-					console.log(factory);
+					console.log($textLayerDiv);
+					//remove all children 
+					//
+					//while($textLayerDiv[0].firstChild) {
+					//	$textLayerDiv[0].removeChild($textLayerDiv[0].firstChild);
+					//}
+					
 					var textLayer = factory.createTextLayerBuilder($textLayerDiv.get(0), 0, viewport);
 
 					var renderContext = {
@@ -106,7 +121,6 @@ angular.module('eapdf', [])
 				});
 			});		
 
-		});
 
 	
 	}
