@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "dependencies": {},
   "devDependencies": {
-    "karma": "~0.13.22"
+    "express": "^4.13.4",
+    "karma": "~0.13.22",
+    "mongoose": "^4.4.12"
   }
 }
