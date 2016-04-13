@@ -27,7 +27,6 @@ angular.module('eapdf', [])
 
 				draw($pdfContainer, $canvas, $textLayerDiv, scope);
 				scope.$watch(function(newVal, oldVal, scope){
-					console.log($pdfContainer);
 					//TODO: draw again if something changes	
 				}, true);
 			};		
@@ -46,7 +45,13 @@ angular.module('eapdf', [])
 
 		var addComment = function(e) {
 				scope.selection.end =  e.srcElement.attributes.line.value;
-				console.log(scope);
+				console.log(e);
+				scope.selection.text = "";
+				for (var selEl = scope.selection.start; selEl <= scope.selection.end; selEl++) {
+					scope.selection.text += e.srcElement.offsetParent.children[selEl].outerText;
+					scope.selection.text += " ";
+				} 
+				scope.$apply();
 			};
 
 
