@@ -1,64 +1,64 @@
-var User = require('mongoose').model('User');
+var Pdf = require('mongoose').model('pdf');
 
 exports.create = function(req, res, next)  {
 
 	console.log(req.body);
-	var user = new User(req.body);
+	var pdf = new Pdf(req.body);
 
-	user.save(function(err) {
+	pdf.save(function(err) {
 		if (err) {
 			return next(err); 
 		} else {
-			res.json(user);		
+			res.json(pdf);		
 		}
 	});
 	
 };
 
 exports.list = function(req, res, next) {
-	User.find({}, function(err, users) {
+	Pdf.find({}, function(err, pdfs) {
 		if (err)  {
 			return next(err);
 		} else {
-			res.json(users);
+			res.json(pdfs);
 		}	
 	});
 };
 
 exports.read = function(req, res) {
-	res.json(req.user);
+	res.json(req.pdf);
 };
 
-exports.userByID = function(req, res, next, id) {
-	User.findOne({
-		studentNumber: id	
-	}, function(err, user) {
+exports.pdfByID = function(req, res, next, id) {
+	Pdf.findOne({
+		_id: id	
+	}, function(err, pdf) {
 		if (err) {
 			return next(err);
 		} else {
-			req.user = user;
+			req.pdf = pdf;
 			next();
 		}
 	});
 };
 
 exports.update = function(req, res, next) {
-	User.findByIdAndUpdate(req.user.id, req.body, function(err, user) {
+	Pdf.findByIdAndUpdate(req.pdf.id, req.body, function(err, pdf) {
 		if (err) {
 			return next(err);
 		} else {
-			res.json(user);
+			res.json(pdf);
 		}
 	});
 };
 
 
 exports.delete = function(req, res, next) {
-	req.user.remove(function(err) {
+	req.pdf.remove(function(err) {
 		if (err) {
 			return next(err);
 		} else {
-			res.json(req.user);
+			res.json(req.pdf);
 		}
 	});
 };

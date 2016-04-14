@@ -13,6 +13,7 @@ app.use(jsonParser);
 var mongoose = require('./mongoose');
 var db = mongoose(); 
 require('./routes/user.server.routes.js')(app);
+require('./routes/pdf.server.routes.js')(app);
 
 
 
