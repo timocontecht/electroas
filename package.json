@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "dependencies": {},
   "devDependencies": {
+    "body-parser": "^1.15.0",
+    "connect": "^3.4.1",
     "express": "^4.13.4",
     "karma": "~0.13.22",
     "mongoose": "^4.4.12"
