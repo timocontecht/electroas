@@ -1,25 +1,16 @@
-var express = require('express');
-var app = express();
 
 
-var bodyParser = require('body-parser');
+var mongoose = require('./config/mongoose');
+var express = require('./config/express');
+var passport = require('./config/passport');
 
-
-var jsonParser = bodyParser.json();
-var urlencodedParser = bodyParser.urlencoded({ extended: false});
-app.use(urlencodedParser);
-app.use(jsonParser);
-
-var mongoose = require('./mongoose');
 var db = mongoose(); 
-require('./routes/user.server.routes.js')(app);
-require('./routes/pdf.server.routes.js')(app);
-require('./routes/comment.server.routes.js')(app);
-
+var app = express();
+var passport = passport();
 
 
 app.use('/', function(req, res) {
-	res.send('Hello World');
+	res.send('The electroAs server API');
 });
 
 
