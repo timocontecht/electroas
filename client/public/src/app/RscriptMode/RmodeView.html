@@ -1,0 +1,30 @@
+<!--public/src/app/RscriptMode/RmodeView.tpl.html-->
+<div>
+    <div id="header">
+        <h1>Statistics by example with R</h1>
+    </div>
+
+    <div id="nav">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#R">R</a></li>
+        </ul>
+        
+        <div class="tab-content">
+          <div id="R Examples" class="tab-pane fade in active">
+            <div class="list-group">
+                <!--to use ngRepeat to get the practical examples list-->
+                <a href="#" class="list-group-item disabled">Example 1</a>
+                <a href="#" class="list-group-item">Example 2</a>
+                <a href="#" class="list-group-item">Example 3</a>
+                <a href="#" class="list-group-item">Example 4</a>
+            </div> 
+                <!--Possibility to change the mode. Not applicable yet.-->
+                <p><select ng-model="mode" ng-options="m for m in modes" ng-change="modeChanged()"></select>      
+          </div>
+        </div>        
+    </div>
+    <div id="section">
+        <h2>Rscript</h2>
+        <div class="col-sm-12" ui-ace="aceOption" ng-model="aceModel"></div>
+    </div>
+</div>

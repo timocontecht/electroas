@@ -4,4 +4,5 @@ Development of a electoronic assessment platform to be used for the teaching of 
 Features are: 
 
 - to allow collaborative commenting of pdfs
+- to allow collaborative statistics analysis
 etc ....

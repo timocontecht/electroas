@@ -1,6 +1,7 @@
 {
   "name": "electroAs",
   "version": "0.0.1",
+  "main": "server.js",
   "dependencies": {},
   "devDependencies": {
     "body-parser": "^1.15.0",

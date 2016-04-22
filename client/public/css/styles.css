@@ -47,3 +47,35 @@
     background-color: rgba(0, 100, 0, 0.2);
 }
 
+.ace_editor{
+    width: 500px;
+    height: 450px;
+    background-color: #E0E0E0;
+    margin-right: 5px;
+    overflow-y: auto;
+    float: left;
+    padding: 10px;
+    border: #E0E0E0 solid 1px;
+
+}
+
+#header {
+    background-color:#E0E0E0;
+    color:black;
+    text-align:left;
+    padding:5px;
+}
+#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:590px;
+    width:260px;
+    float:left;
+    padding:5px; 
+}
+#section {
+    width:500px;
+    float:left;
+    border-right: #E0E0E0 solid 1px;
+    padding:10px; 
+}

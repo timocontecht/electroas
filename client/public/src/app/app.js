@@ -1,14 +1,2 @@
-var electroAs = angular.module('electroAs', ['ngRoute', 'eapdf']);
-
-
-angular.module('electroAs').config(function($routeProvider) {
-	$routeProvider
-		.when('/',  {
-			templateUrl: 'src/app/pdfannotator/pdfannotator.tpl.html',
-			controller: 'pdfannotator'	
-		})
-		.otherwise({
-			redirectTo: '/'
-		});
-
-});
+//public/src/app/app.js
+angular.module('electroAs', ['ngRoute', 'appRoutes', 'eapdf', 'RmodeCtrl', 'ui.ace']);

@@ -6,6 +6,7 @@
     "angular-route": "1.5.3",
     "pdfjs-dist": "^1.4.162",
     "jquery": "^2.2.2",
-    "bootstrap": "^3.3.6"
+    "bootstrap": "^3.3.6",
+    "angular-ui-ace": "0.2.3"
   }
 }

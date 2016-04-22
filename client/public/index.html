@@ -2,23 +2,57 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title></title>
+    
+	<title>dev</title>
+    
+    
 	
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
-
+    
+    
+    
+    <!--jQuery-->
 	<script src="lib/jquery/dist/jquery.min.js"></script>
+    <!--Bootstrap-->
 	<script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="lib/angular/angular.min.js"></script>
+    <!--Angular JS-->
+	<script src="lib/angular/angular.js"></script>
 	<script src="lib/angular-route/angular-route.min.js"></script>
+    
 	<script src="lib/pdfjs-dist/build/pdf.js"></script>
 	<script src="src/app/app.js"></script>
+    <script src="src/app/appRoutes.js"></script>
+    <!--Pdf annotator-->
 	<script src="src/app/pdfannotator/pdfannotator.js"></script>
 	<script src="src/app/pdfannotator/pdfdirective.js"></script>
 	<script src="src/app/pdfannotator/pdfviewer.js"></script>
+    <!--Ace script viewer-->
+    <script src="lib/ace-builds/src-noconflict/ace.js"></script>
+    <script src="lib/angular-ui-ace/ui-ace.min.js"></script>
+    <!--R mode custom-->
+    <script src="src/app/RscriptMode/RmodeController.js"></script>
+    
+    
+   
 </head>
-<body ng-app='electroAs'>
+    
 
+<body ng-app="electroAs" ng-controller="RmodeController">
+
+     <!-- HEADER-->
+    <nav class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">pdfAnnotator</a>
+        </div>
+
+        <!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE -->
+        <ul class="nav navbar-nav">
+            <li><a href="/Rmodeview">R mode</a></li>
+        </ul>
+    </nav>    
+        
+    <!-- ANGULAR DYNAMIC CONTENT -->
 	<div ng-view></div>
 
 </body>
